@@ -1,9 +1,19 @@
 import LoginForm from "../Components/LoginForm";
 import vaultImage from '../assets/white.jpg';
-import { Link } from 'react-router-dom';
-
+import RegisterForm from "../Components/RegisterForm";
+import { useState } from "react";
 
 const Main = () => {
+    const [isPopupOpen, setPopupOpen] = useState(false);
+
+    const openPopup = () => {
+        setPopupOpen(true);
+    }
+
+    const closePopup = () => {
+        setPopupOpen(false)
+    }
+
     return (
         <>
         <div className="main-container">
@@ -15,7 +25,13 @@ const Main = () => {
                 <h1>Login</h1>
                 <p>
                     Doesn't have an account yet? 
-                    <Link to="/register">Register</Link> 
+                    <button 
+                        className="btn-register"
+                        onClick={openPopup}
+                       >
+                        Register
+                    </button> 
+                    <RegisterForm isOpen={isPopupOpen} onClose={closePopup} />
                 </p> {/*use user react router, without server */}
                 <LoginForm />
             </div>
